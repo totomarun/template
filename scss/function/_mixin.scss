@@ -1,0 +1,209 @@
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+// 上下中央配置
+@mixin center {
+　　text-align: center;
+　　position: relative;
+　　top: 50%;
+　　-webkit-transform: translateY(-50%);
+　　-ms-transform: translateY(-50%);
+　　transform: translateY(-50%);
+}
+
+//リンクカラーの生成
+@mixin link-color($color) {
+　　color: $color;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: lighten($color, 20%);
+    }
+}
+
+//透明度の指定
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $ieopacity: ($opacity * 100);
+    filter: alpha(opacity=$ieopacity);
+}
+
+//フォントサイズの指定
+@mixin font-size($size, $base: 16) {
+　　font-size: $size + px;
+　　font-size: ($size / $base) + rem;
+}
+
+//三角矢印
+@mixin trianglearrow($direction: right, $size: 12, $color: $gray){
+    $set: left;
+
+    @if $direction == left{
+        $set: right;
+    }@else if $direction == top{
+        $set: bottom;
+    }@else if $direction == bottom{
+        $set: top;
+    }@else{
+        $set: left;
+    }
+    $size: round($size / 2);
+
+　　width: 0;
+　　height: 0;
+　　border: $size + px solid transparent;
+　　border-#{$set}-color: $color;
+}
+
+//矢印
+@mixin arrow($size, $border-width, $border-style, $border-color, $direction) {
+　　content: "";
+　　display: inline-block;
+　　position: absolute;
+　　top: 50%;
+　　width: $size;
+　　height: $size;
+　　margin-top: - ($size / 2);
+　　border: $border-width $border-style $border-color;
+    @if $direction == up {
+        -webkit-transform: rotate(-135) + deg;
+        -moz-transform: rotate(-135) + deg;
+        transform: rotate(-135) + deg;
+    }
+    @else if $direction == under {
+        -webkit-transform: rotate(45) + deg;
+        -moz-transform: rotate(45) + deg;
+        transform: rotate(45) + deg;
+    }
+    @else if $direction == right {
+        -webkit-transform: rotate(-45) + deg;
+        -moz-transform: rotate(-45) + deg;
+        transform: rotate(-45) + deg;
+    }
+    @else if $direction == left {
+        -webkit-transform: rotate(135) + deg;
+        -moz-transform: rotate(135) + deg;
+        transform: rotate(135) + deg;
+    }
+    @else {
+        -webkit-transform: rotate($direction) + deg;
+        -moz-transform: rotate($direction) + deg;
+        transform: rotate($direction) + deg;
+    }
+}
+
+//グラデーション背景
+@mixin bg-gradient($angle: 180deg, $color: #0bd, $amount: 20%) {
+　　background: linear-gradient($angle, $color, adjust-hue($color, $amount)) fixed;
+}
+
+//自動でベンダープレフィックス付与
+@mixin prefixes($property, $value) {
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+        #{$prefix}#{$property}: $value;
+    }
+}
+
+//長文にテキストを枠内に収める
+@mixin truncate($width: 100%) {
+　　width: $width;
+　　max-width: 100%;
+　　display: block;
+　　overflow: hidden;
+　　white-space: nowrap;
+　　text-overflow: ellipsis;
+}
+
+//絶対位置
+@mixin absPosition ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+     position: absolute;
+     top: $top;
+     right: $right;
+     bottom: $bottom;
+     left: $left;
+}
+
+//疑似要素でアイコン
+@mixin icon($fileName, $width, $height) {
+	background: url($path_img + $fileName) no-repeat 50% 50%;
+	background-size: $width $height;
+	width: $width;
+	height: $height;
+}
+
+//hover
+@mixin hover($flag: true){
+  @include min-screen(900px){
+    transition: .2s;
+    &:hover{
+       transition: .3s;
+       @if $flag == true{
+         opacity: .5;
+       }
+       @content;
+    }
+  }
+}
+
+//vw計算
+@function calcvw($num, $width: 750) {
+    @return (1vw * $num / $width * 100);
+}
+
+//フォーム周りのリセット
+@mixin none-appearance {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none transparent;
+    background-clip: padding-box;
+    color: inherit;
+    font-size: inherit;
+    vertical-align: middle;
+    box-sizing: border-box;
+    &::-ms-clear {
+        display: none;
+    }
+    &::-ms-reveal {
+        display: none;
+    }
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+//placeholderのカラー変更
+@mixin placeholder-color($color) {
+    &:placeholder-shown {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color:$color;
+    }
+    &:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color:$color;
+    }
+}
+
+//テキストストローク(影)
+@mixin text-stroke($size: 2, $bg: #000) {
+    text-shadow: #{$size}px 0 0 #{$bg}, -#{$size}px 0 0 #{$bg}, 0 -#{$size}px 0 #{$bg}, 0 #{$size}px 0 #{$bg}, #{$size}px #{$size}px 0 #{$bg}, -#{$size}px #{$size}px 0 #{$bg}, #{$size}px -#{$size}px 0 #{$bg}, -#{$size}px -#{$size}px 0 #{$bg}, #{$size - 1}px #{$size}px 0 #{$bg}, -#{$size - 1}px #{$size}px 0 #{$bg}, #{$size - 1}px -#{$size}px 0 #{$bg}, -#{$size - 1}px -#{$size}px 0 #{$bg}, #{$size}px #{$size - 1}px 0 #{$bg}, -#{$size}px #{$size - 1}px 0 #{$bg}, #{$size}px -#{$size - 1}px 0 #{$bg}, -#{$size}px -#{$size - 1}px 0 #{$bg}, #{$size - 1}px #{$size - 1}px 0 #{$bg}, -#{$size - 1}px #{$size - 1}px 0 #{$bg}, #{$size - 1}px -#{$size - 1}px 0 #{$bg}, -#{$size - 1}px -#{$size - 1}px 0 #{$bg};
+}

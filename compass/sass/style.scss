@@ -1,0 +1,21 @@
+// 新規Sass環境をCompassで作成
+// $ compass create --bare --sass-dir "sass" --css-dir "css" --javascript-dir "js" --images-dir "img"
+
+// config.rb設定
+// # コメントアウト取る
+// line_comments = false
+// アウトプットスタイルの指定
+// output_style = :expanded
+// ブラウザでsass検証
+// sass_options = { :debug_info => true }
+
+// ディレクトリ移動
+// $ cd sass
+// ファイルを指定して起動
+// $ vi style.scss
+// ドキュメントルートに戻る
+// cd ../
+// compass作動、cssファイル作成
+// compass w
+
+@import "compass";
