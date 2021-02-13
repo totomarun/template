@@ -7,8 +7,8 @@
 	height: $header-height;
 	z-index: map-get($layer, "header");
 
-	> .inner {
-	}
+	// > .inner {
+	// }
 }
 
 .header-content {
@@ -19,7 +19,6 @@
 .header-logo {
 	margin-right: auto;
 	// display: block;
-	// margin-right: auto;
 	// width: 100%;
 	// position: fixed;
 	// top: 0;
@@ -69,9 +68,9 @@
 					transition: all 0.3s ease 0s;
 				}
 
-				&:hover {
-					// transform: scale(1.1,1.1);
-				}
+				// &:hover {
+				// 	transform: scale(1.1,1.1);
+				// }
 
 			&:hover {
 				opacity: $opacity;

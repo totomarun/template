@@ -77,35 +77,36 @@ jQuery(function() {
 				e.preventDefault();
 			});
 	}
-});
 
 	// slick
-	$('.center').slick({
-		autoplay:true,
-		autoplaySpeed:3000,
-		dots:false,
-		arrows:true,
-		centerMode: true,
-		centerPadding: '20vw',
-		SlidesToShow:3,
-		responsive: [{
-			breakpoint: 768,
-				 settings: {
-						slidesToShow: 1,
-						dots:true,
-						arrows:false,
-						centerPadding: '0',
-			}
-		}]
-	});
-
+	// $('.center').slick({
+	// 	autoplay:true,
+	// 	autoplaySpeed:3000,
+	// 	dots:false,
+	// 	arrows:true,
+	// 	centerMode: true,
+	// 	centerPadding: '20vw',
+	// 	SlidesToShow:3,
+	// 	responsive: [{
+	// 		breakpoint: 768,
+	// 				settings: {
+	// 					slidesToShow: 1,
+	// 					dots:true,
+	// 					arrows:false,
+	// 					centerPadding: '0',
+	// 		}
+	// 	}]
+	// });
+	
 	//ドロップダウン
-	$('.drawer-dropdown').on('click',function(){
-		$('.dropdown_menu',this).slideToggle();
+	$('.answer').hide();
+	$('.q-list').on('click',function(){
+		$('.answer',this).slideToggle();
+		$('.icon-a',this).slideToggle();
+		$('.icon-aa',this).slideToggle();
 	});
-
+	
 	//animation_bounceIn
-	// $(function(){
 	// 	$(window).scroll(function (){
 	// 		$('.purchase_flow-animation img').each(function(){
 	// 			var targetElement = $(this).offset().top;
@@ -116,8 +117,7 @@ jQuery(function() {
 	// 			}
 	// 		});
 	// 	});
-	// });
-
+	
 	//animation_slide+zoom
 	// $(".item_list-content>div").each(function(){
 	// 	$(this).hover(function(){
@@ -129,21 +129,29 @@ jQuery(function() {
 	// 		$("img",this).removeClass("zoom");
 	// 	});
 	// });
-
-
+	
+	
 	//画面上部へ戻る
-	// $(function(){
-	// var pagetop = $('#page-top');
-	// pagetop.hide();
-	// $(window).scroll(function () {
-	// 	if ($(this).scrollTop() > 100) {
-	// 		pagetop.fadeIn();
-	// 	} else {
-	// 		pagetop.fadeOut();
-	// 	}
-	// });
-	// pagetop.click(function () {
-	// 	$('body, html').animate({ scrollTop: 0 }, 500);
-	// 	return false;
-	// });
-	// });
+	var pagetop = $('#page-top');
+	pagetop.hide();
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			pagetop.fadeIn();
+		} else {
+			pagetop.fadeOut();
+		}
+	});
+	pagetop.on('click',function () {
+		$('body, html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+
+
+
+
+
+
+
+
+	
+});

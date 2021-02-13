@@ -14,7 +14,7 @@ $drawer-content-width: 200px;
 $is-bar-text-show: false;
 
 // 背景画像
-$drawer-content-background-img: ;
+// $drawer-content-background-img: ;
 
 .drawer {
 	z-index: map-get($layer, "drawer");
@@ -86,7 +86,7 @@ $drawer-content-background-img: ;
 	left: 0;
 	display: block;
 	background: $drawer-bar-background;
-	background-image: $drawer-bar-background-img;
+	// background-image: $drawer-bar-background-img;
 	width: 100%;
 	height: $drawer-bar-height;
 	border-radius: 3px;
